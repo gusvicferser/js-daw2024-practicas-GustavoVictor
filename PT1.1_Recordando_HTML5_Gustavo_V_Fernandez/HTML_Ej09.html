@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 09</title>
+</head>
+<body>
+    <form action="/HTML_Ej09.html">
+        <fieldset>
+            <legend><h1>FORMULARIO INSCRIPCIÓN CYBERWALL</h1></legend>
+            <label for="name">Name:</label><br>
+            <input type="text" placeholder="Nom i cognoms..." required><br>
+            <label for="username">Create a user name:</label><br>
+            <input type="text" name="username" required><br>
+            <label for="password">Create a password:</label><br>
+            <input type="password" name="password" minlength="6" maxlength="12" required><br><br>
+            <label for="birthday">Birthday</label>
+            <input type="date" name="birthday"><br>
+            <label for="i_am">I am:</label>
+            <select name="position" >
+                <option value="student">a student</option>
+                <option value="teacher">a teacher</option>
+                <option value="bussines">a bussiness owner</option>
+                <option value="self_employed">self-employed</option>
+                <option value="other">other</option>
+            </select><br>
+            <label for="telephone">Mobile phone:</label><br>
+            <input type="tel" name="telephone" placeholder="654-789-123" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required><br>
+            <label for="english_lvl">Select your english level (0-10):</label><br>
+            <input type="range" name="english_lvl" min="0" max="10"><br>
+            <button type="submit">Sign me up</button>
+        </fieldset>
+    </form>
+    
+
+    
+</body>
+</html>

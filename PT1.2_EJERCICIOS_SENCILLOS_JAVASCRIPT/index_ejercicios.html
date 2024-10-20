@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JS</title>
+</head>
+
+<body>
+    <legend style="font-size: larger;"><strong>Ejercicios Sencillos de Javascript por Gustavo Víctor:</strong></legend>
+    <br>
+    <label>Ejercicio 01: Devuelve tu nombre</label><br>
+    <button onclick="ejercicio01()">Ejercicio 1</button><br><br>
+    <label>Ejercicio 02: Cuenta las 'a' minúsculas</label><br>
+    <button onclick="ejercicio02()">Ejercicio 2</button><br><br>
+    <label>Ejercicio 03: Cuenta las 'a' minúsculas y mayúsculas</label><br>
+    <button onclick="ejercicio03()">Ejercicio 3</button><br><br>
+    <label>Ejercicio 04: ¿De qué color quieres el fondo?</label><br>
+    <button onclick="ejercicio04()">Ejercicio 4</button><br><br>
+    <label>Ejercicio 05: ¿De qué color quieres el fondo? (Segunda parte con botones)</label><br>
+    <div style="padding:50px; display:flex; justify-content: center; align-items: center; align-content: space-between;">
+        <div>
+            <h3>Escoge tu color</h3>
+            <button onclick="ejercicio05('red')">Rojo</button>
+            <button onclick="ejercicio05('green')">Verde</button>
+            <button onclick="ejercicio05('blue')">Azul</button>
+        </div>
+    </div>
+    <label>Ejercicio 06: "El div cambiante..."</label><br><br>
+    <div id="ej06">Entra aquí</div>
+    <script src="JS_ejercicios.js"></script><br><br>
+    <label>Ejercicio 08: "¿Cuál es el mayor?"</label><br><br>
+    <label>Introduce 3 números:</label><br>
+        <input type="text" id="primer_numero"></input><br>
+        <input type="text" id="segundo_numero"></input><br>
+        <input type="text" id="tercer_numero"></input><br>
+        <button onclick="comprobarMayor()">¡Compara!</button>
+</body>
+</html>

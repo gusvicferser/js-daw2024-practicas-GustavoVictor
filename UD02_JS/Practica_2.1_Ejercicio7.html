@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio07</title>
+</head>
+<body>
+    
+    <label for="averiguar">Averigua los días que llevas aquí:</label><br>
+    <input id="averiguar" type="button" onclick="ejercicio07()" value="Pulsa para averiguar">
+
+    <script>
+
+        function ejercicio07() {
+
+            let fechaCumple = new Date(window.prompt('Introduce la fecha de tu cumpleaños (YYYY/MM/DD):'));
+            let diaActual = new Date();
+            let diasAqui = (int)(diaActual.getTime() - fechaCumple.getTime())/3600000;
+
+            console.log(`fechaCumple: ${fechaCumple}, diaActual: ${diaActual}, diasAqui: ${diasAqui}`);
+
+            window.alert(`Llevas ${diasAqui} días, aproximadamente, en este planeta desde que naciste`);
+
+
+        }
+
+    </script>
+
+</body>
+</html>

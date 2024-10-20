@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 05</title>
+</head>
+
+<body>
+
+    <input type="text" name="n1" id="n1">
+    <input type="text" name="n2" id="n2">
+    <input type="text" name="n3" id="n3"><br>
+    <input type="text" name="n4" id="n4">
+    <input type="text" name="n5" id="n5">
+    <input type="text" name="n6" id="n6"><br>
+    <input type="text" name="n7" id="n7">
+    <input type="text" name="n8" id="n8">
+    <input type="text" name="n9" id="n9">
+    <input type="button" value="Mayor" id="btn">
+
+
+    <script>
+
+        function ejercicio05(){
+
+            let mayor = 0;
+
+            for (let i=1; i<10;i++) {
+
+                let numero = parseInt(document.getElementById('n'+i).value);
+                console.log(numero);
+
+                if (numero>mayor) {
+
+                    mayor = numero;
+                    console.log(numero);
+
+                }
+            }
+
+            window.alert('El número mayor es ' + mayor);
+
+
+        }
+
+        document.getElementById('btn').addEventListener('click', ejercicio05)
+
+    </script>
+</body>
+
+</html>

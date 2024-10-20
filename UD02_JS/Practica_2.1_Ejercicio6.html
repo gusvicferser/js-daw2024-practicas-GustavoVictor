@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+
+    <button onclick="ejercicio06()">Averigua la fecha</button>
+    
+    <script>
+
+        function ejercicio06() {    
+            let dias = [
+                "domingo",
+                "lunes",
+                "martes",
+                "miercoles",
+                "jueves",
+                "viernes",
+                "sabado" 
+            ]
+
+            let meses = [
+                "enero",
+                "febrero",
+                "marzo",
+                "abril",
+                "mayo",
+                "junio",
+                "julio",
+                "agosto",
+                "septiembre",
+                "octubre",
+                "noviembre",
+                "diciembre"
+            ]
+
+            let fecha = new Date();
+            let diaActual = dias[fecha.getDay()];
+            console.log(diaActual);
+            let mesActual = meses[fecha.getMonth()];
+            console.log(mesActual);
+
+            /* En lugar de comilla simple, se puede poner el acento inverso
+                y la combinación ${variable}!! */ 
+            alert(`Hoy es ${diaActual}, ${fecha.getDate()} de ${mesActual} de ${fecha.getFullYear()}`); 
+        }
+
+    </script>
+
+</body>
+</html>

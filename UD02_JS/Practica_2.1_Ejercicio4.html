@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+
+<body>
+    <fieldset>
+        <input type="number" name="input" id="input">
+        <input type="button" value="Calcula" id="boton">
+        <table border="1">
+            <tr>
+                <td>BINARIO</td>
+                <td id="binario"></td>
+            </tr>
+            <tr>
+                <td>OCTAL</td>
+                <td id="octal"></td>
+            </tr>
+            <tr>
+                <td>HEXADECIMAL</td>
+                <td id="hexadecimal"></td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <script>
+
+       
+       
+        // Creamos una funcion:
+        function ejercicio4() {
+
+             // Debemos obtener el número que nos ponga:
+            let number = parseInt(document.getElementById('input').value);
+            console.log(number);
+
+            document.getElementById('binario').innerHTML = number.toString(2);
+            document.getElementById('octal').innerHTML = number.toString(8);
+            document.getElementById('hexadecimal').innerHTML = number.toString(16);
+
+        }
+    
+    document.getElementById('boton').addEventListener('click', ejercicio4);
+    </script>
+
+</body>
+
+</html>

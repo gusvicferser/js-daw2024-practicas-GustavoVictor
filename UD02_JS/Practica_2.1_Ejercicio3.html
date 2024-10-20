@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 Objetos Nativos</title>
+</head>
+
+<body>
+
+    <label for="mensaje">Introduce aquí tu mensaje:</label><br>
+    <input id="cadenaTexto" type="text">
+    <button id="btn" onclick="setTimeout(insertarLetra,1000)">¡Preparate!</button>
+    <script>
+
+        let cont = 0;
+
+        function crearTabla(num) {
+
+            // Creamos una tabla con una fila:
+            let table = document.createElement('table');
+            table.id = 'table';
+            table.setAttribute('border', '1');
+            let tableRow = document.createElement('tr');
+            let tableCell;
+
+            // Bucle for para realizar la tabla:
+            for (let column = 0; column < num; column++) {
+                // Lo definimos dentro:
+                tableCell = document.createElement('td');
+
+                // Le añadimos el id de esta manera:
+                tableCell.id = 'table' + (column);
+                tableCell.style.padding = '50px';
+                tableCell.style.fontSize = 'larger';
+
+                // Lo añadimos a la tr de la tabla de tablerow:
+                tableRow.append(tableCell)
+            }
+
+            // Aquí lo añadimos al contenedor principal (table):
+            table.append(tableRow);
+
+            // Aquí lo añadimos al body:
+            document.body.append(table);
+        }
+
+
+        function insertarLetra() {
+
+            let mensaje = document.getElementById('cadenaTexto').value;
+
+            if (cont == 0){
+
+                crearTabla(mensaje.length);
+
+            }
+
+            if (cont < mensaje.length) {
+
+                let celdaActual = document.getElementById('table' + cont);
+
+                celdaActual.innerHTML = mensaje.charAt(cont).toUpperCase();
+
+                console.log('valor: ' + celdaActual.innerHTML + ' char: ' + mensaje.charAt(cont));
+
+                cont++;
+
+                setTimeout(insertarLetra, 1000);
+
+            } else {
+
+                cont = 0;
+
+            }
+        }
+
+        console.log('he llegado');
+
+    </script>
+
+
+</body>
+
+</html>
