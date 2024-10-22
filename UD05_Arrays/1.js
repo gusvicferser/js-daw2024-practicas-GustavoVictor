@@ -58,3 +58,11 @@
 // let a = ["2", "3", "10", "20", "111"];
 // a.sort (); // Ordena el vector original ALFABÉTICAMENTE
 // console.log (a); // Print ["10", "111", "2", "20", "3"]
+
+// Every y Some (devuelve un true si TODOS lo son o si uno o más lo son, respectivamente):
+
+// Funciones flecha, hacen que el lenguaje sepa que está refiriéndose a una función:
+
+
+
+
