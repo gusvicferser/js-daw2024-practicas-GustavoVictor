@@ -106,19 +106,63 @@ let data = [
     { name: 'Laura', telephone: '633663366', age: 17 }
 ];
 
+// a)
+
 data.push(
     { name: 'Pedro', telephone: '611944444', age: 25 },
     { name: 'Julia', phone: '633232323', age: 37 });
 
 console.log(data);
 
+// b)
+
 data.sort(function (element, element2) {
-    return element[2] - element2[2];
+    return element.age - element2.age;
 })
 
 console.log(data);
 
+// c)
+
+data.sort(function (element, element2){
+    if (element.name > element2.name) return 1;
+    if (element.name < element2.name) return -1;
+})
+
+console.log(data);
+
+// d)
+let mayores30 = data.filter(function (element){
+    if(element.age > 30) return 1;
+})
+
+console.log(mayores30);
+
+
 //Ejercicio 9:
+console.log();
 console.log('Ejercicio 9:');
 
+function buscarProducto(nombre, productos) {
 
+    for(let producto of productos ) {
+    if(producto.nombre == nombre) {
+        return producto;
+    }     
+}
+return null;
+}
+
+let productos = [ 
+    { nombre: "Laptop", categoria: "Electrónica", precio: 1500 }, 
+    { nombre: "Silla", categoria: "Muebles", precio: 100 },
+    { nombre: "", categoria: "Electrónica", precio: 50 }
+     ];
+
+let productoBuscado = buscarProducto("Laptop", productos);
+
+console.log(productoBuscado);
+
+let nulo = buscarProducto("Sombrilla", productos);
+
+console.log(nulo);
