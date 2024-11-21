@@ -1,5 +1,6 @@
 /**
- * Crea un bucle que recorra un array de números y calcule la suma de todos ellos de forma reiterativa y recursiva. ¿Qué solución crees que es mejor?
+ * Crea un bucle que recorra un array de números y calcule la suma de todos 
+ * ellos de forma reiterativa y recursiva. ¿Qué solución crees que es mejor?
  */
 
 /*const numeros = [2,4,6,8,1,3,5,7,9];
@@ -29,8 +30,18 @@ console.log(recursiva(numeros.length-1));*/
  *     2. Tienes un array de objetos que representan productos. Usa forEach() para incrementar en un 10% el precio de cada producto.
  */
 
-const productos = [ { nombre: "Camiseta", precio: 20 }, { nombre: "Pantalón", precio: 30 }, { nombre: "Zapatos", precio: 50 } ];
+// const productos = [ { nombre: "Camiseta", precio: 20 }, { nombre: "Pantalón", precio: 30 }, { nombre: "Zapatos", precio: 50 } ];
 
-productos.forEach(x=>x['precio']*10/100);
+// productos.forEach((productos) => {productos.precio*=1.1;});
 
-console.log(productos);
+// console.log(productos);
+
+
+/**
+ *     3. Crea un array de números y usa map() para crear un nuevo array donde cada número esté multiplicado por 2.
+ */
+
+/**
+ * 4. Crea un array de números y usa reduce() para calcular la suma total de todos los elementos del array.
+ */
+
