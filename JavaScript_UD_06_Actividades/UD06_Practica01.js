@@ -7,6 +7,16 @@
  * el resultado por pantalla. Utilizar funciones flecha si se considera apropiado.
  */
 
+
+/**
+ * Función para introducir palabras hasta que el usuario decida dejar el prompt
+ * vacío o pulsar cancelar. Almacena las palabras en un array y luego las ordena
+ * alfabéticamente en español y lo devuelve en un alert. No necesita parámetros 
+ * de entrada ni devuelve nada.
+ * 
+ * @author: Gustavo Víctor
+ * @version: 1.0
+ */
 function actividad01() {
 
     const palabras = [];
