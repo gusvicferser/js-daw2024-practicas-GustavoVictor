@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        .panel {
+            display: flex;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Examen de JavaScript (DWEC):</h1>
+
+    <button type="button" id="ej01">Ejercicio 01</button><br><br>
+
+    <button type="button" id="ej02">Ejercicio 02</button><br>
+
+    <div id="container" style="display:none;">
+        <select name="options" id="options">
+            <option value="" disabled selected>Elige...</option>
+            <option value="red">Rojo</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+            <option value="yellow">Amarillo</option>
+        </select>
+        <button type="button" id="clean">Limpiar</button><br>
+        <div class="panel" id="panel"></div>
+        <h2 id="total"></h2>        
+    </div>
+
+    <script src="ejercicio01.js"></script>
+    <script src="ejercicio02.js"></script>
+
+</body>
+</html>

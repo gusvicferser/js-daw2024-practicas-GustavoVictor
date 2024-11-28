@@ -76,7 +76,8 @@ document.getElementById('reapear').addEventListener('click',
     2. Crear Caja: generará una caja de color rojo con el texto “nueva caja”.
     3. Mostrar Fecha Actual: Muestra la fecha y hora actual.
     4. Generar Número Aleatorio: Genera un número aleatorio entre 1 y 100.
- * Finalmente crea un botón restablecer para restablecer la página a su estado inicial.
+ * Finalmente crea un botón restablecer para restablecer la página a su estado 
+ * inicial.
  */
 
 const option = document.getElementById('options');
