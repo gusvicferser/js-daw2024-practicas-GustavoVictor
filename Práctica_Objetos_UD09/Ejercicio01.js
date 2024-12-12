@@ -27,11 +27,11 @@
 // Fijamos las características del constructor como si fuese una función:
 function Rectangulo(width, height) {
 
-    width=parseFloat(width);
-    height=parseFloat(height);
+    // width=parseFloat(width);
+    // height=parseFloat(height);
     // Definir las variables que llegan y asignarle un valor por defecto:
-    this.width = (width===NaN || width<=0)? 1 : width,
-    this.heigth =  (height===NaN || height<=0)? 1 : height,
+    this.width = (isNaN(width) || width<=0)? 1 : width,
+    this.height =  (isNaN(height) || height<=0)? 1 : height,
     // Método para cambiar las dimensiones:
     this.cambiarDimensiones = (numA, numB) => { 
         this.width = numA; 
@@ -49,17 +49,21 @@ function Rectangulo(width, height) {
     this.comparar = (rectangulo) => {
 
         if(rectangulo.calcularArea()>this.calcularArea()) {
-            return 'Mayor';
+            return 'mayor';
         } else if (rectangulo.calcularArea===this.calcularArea()) {
-            return 'Igual';
+            return 'igual';
         } else {
-            return "Menor";
+            return "menor";
         }
-    } 
+    },
+    // Pongo un método toString para mostrarlo:
+    this.toString = () => {
+        return `Rectángulo de ${this.width} de ancho y ${this.height} de lado tiene un área de ${this.calcularArea()}`; 
+    }
 }
 
 let rect1 = new Rectangulo('mentira', 20);
-console.log(`Rectángulo 1: ${rect1}`);
+console.log(`Rectángulo 1: ${rect1.toString()}`);
 
 rect1.cambiarDimensiones(15.5, 2.3);
 console.log(
@@ -70,7 +74,7 @@ let rect2 = rect1.copia();
 rect1.cambiarDimensiones(5, 10);
 
 console.log(
-    `El segundo rectángulo es: ${rect2}, 
-    que es ${rect1.comparar(rect2)}`
+    `El ${rect2}, 
+    es ${rect1.comparar(rect2)} que el ${rect1}`
 );
 
