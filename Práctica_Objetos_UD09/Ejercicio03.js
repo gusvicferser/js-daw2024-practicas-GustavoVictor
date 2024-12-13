@@ -19,8 +19,33 @@
  * añade la autonomía a los detalles.
  */
 
-function Ordenadores (marca, modelo, memoria, discoDuro, pulgadas){
-    this.marca
-
-    
+function Ordenador(marca, modelo, memoria, discoDuro, pulgadas) {
+    this.marca = marca,
+        this.modelo = modelo,
+        this.memoria = isNaN(memoria) || memoria < 1 ? 4 : memoria,
+        this.discoDuro = isNaN(discoDuro) || discoDuro < 1 ? 512 : discoDuro,
+        this.pulgadas = isNaN(pulgadas) || pulgadas < 1 ? 17 : pulgadas,
+        this.toString = () => {
+            return `El ordenador de marca ${marca} y modelo ${modelo} 
+                tiene ${memoria} GB de memoria RAM, ${discoDuro} de GB de disco duro
+                y ${pulgadas} pulgadas`;
+        }
 }
+
+// function Portatil
+
+let hp = new Ordenador('hp', '550X', 16, 1000, 19.5);
+
+console.log(Ordenador.prototype);
+
+Portatil.prototype.pulgadas = this.pulgadas = isNaN(pulgadas) || pulgadas < 1 ? 12 : pulgadas;
+Portatil.prototype.memoria = this.memoria = isNaN(memoria) || memoria < 1 ? 4 : memoria;
+Portatil.prototype.discoDuro = this.discoDuro = isNaN(discoDuro) || discoDuro < 1 ? 256 : discoDuro;
+Portatil.prototype.autonomia = this.autonomia = isNaN(autonomia) || autonomia < 1 ? 4 : autonomia;
+Portatil.prototype.toString = function () {
+    return `El portátil de marca ${marca} y modelo ${modelo} 
+                tiene ${memoria} GB de memoria RAM, ${discoDuro} de GB de disco duro
+                y ${pulgadas} pulgadas`;
+}
+
+
