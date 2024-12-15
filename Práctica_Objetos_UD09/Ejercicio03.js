@@ -19,33 +19,45 @@
  * añade la autonomía a los detalles.
  */
 
-function Ordenador(marca, modelo, memoria, discoDuro, pulgadas) {
-    this.marca = marca,
-        this.modelo = modelo,
-        this.memoria = isNaN(memoria) || memoria < 1 ? 4 : memoria,
-        this.discoDuro = isNaN(discoDuro) || discoDuro < 1 ? 512 : discoDuro,
-        this.pulgadas = isNaN(pulgadas) || pulgadas < 1 ? 17 : pulgadas,
-        this.toString = () => {
-            return `El ordenador de marca ${marca} y modelo ${modelo} 
-                tiene ${memoria} GB de memoria RAM, ${discoDuro} de GB de disco duro
-                y ${pulgadas} pulgadas`;
-        }
+
+class Ordenador {
+
+    constructor (marca, modelo, memoria, discoDuro, pulgadas) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.memoria = isNaN(memoria) ? 4 :  memoria < 1 ? 4 : memoria;
+        this.discoDuro = isNaN(discoDuro) ? 512 : discoDuro < 1 ? 512 : discoDuro;
+        this.pulgadas = isNaN(pulgadas) ? 17 : pulgadas < 1 ? 17 : pulgadas ;
+    }
+
+    toString() {
+        return `El ordenador de marca ${this.marca} y modelo ${this.modelo}
+        tiene ${this.memoria} GB de memoria RAM, ${this.discoDuro} de GB de disco duro
+        y ${this.pulgadas} pulgadas`;
+    }
+}
+
+class Portatil extends Ordenador {
+    constructor (marca, modelo, memoria, discoDuro, pulgadas, autonomia) {
+        super(marca, modelo, memoria, discoDuro, pulgadas);
+        this.autonomia = isNaN(autonomia) ? 4 : autonomia < 1 ? 4 : autonomia;
+    }
+
+    toString() {
+        return super.toString() + ` y además como portátil tiene ${this.autonomia}
+        horas de autonomia`;
+    }
 }
 
 // function Portatil
 
-let hp = new Ordenador('hp', '550X', 16, 1000, 19.5);
+let hp = new Ordenador('hp', '550X', 32, 1000, 15.6);
 
-console.log(Ordenador.prototype);
+console.log(hp.toString());
 
-Portatil.prototype.pulgadas = this.pulgadas = isNaN(pulgadas) || pulgadas < 1 ? 12 : pulgadas;
-Portatil.prototype.memoria = this.memoria = isNaN(memoria) || memoria < 1 ? 4 : memoria;
-Portatil.prototype.discoDuro = this.discoDuro = isNaN(discoDuro) || discoDuro < 1 ? 256 : discoDuro;
-Portatil.prototype.autonomia = this.autonomia = isNaN(autonomia) || autonomia < 1 ? 4 : autonomia;
-Portatil.prototype.toString = function () {
-    return `El portátil de marca ${marca} y modelo ${modelo} 
-                tiene ${memoria} GB de memoria RAM, ${discoDuro} de GB de disco duro
-                y ${pulgadas} pulgadas`;
-}
+let hpPortatil = new Portatil('hp', '1150B', 16, 512, 'you', 10);
+
+console.log(hpPortatil.toString());
+
 
 
