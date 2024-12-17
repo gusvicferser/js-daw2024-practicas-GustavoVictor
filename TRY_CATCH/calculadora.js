@@ -22,3 +22,11 @@ function dividir(a,b) {
     }
     return '';
 }
+
+export {
+    suma,
+    resta,
+    multiplicar,
+    dividir
+
+}
