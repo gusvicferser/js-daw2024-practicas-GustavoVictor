@@ -56,17 +56,17 @@ function addVisit() {
 if (getCookie('prueba') <= 0) {
 
     setCookie('prueba', 1, 30);
-    // console.log(getCookie('prueba'));
+    console.log(getCookie('prueba'));
     document.querySelector('b').innerHTML = getCookie('prueba');
 
 } else {
 
     if (getCookie('prueba') < 10) {
         addVisit();
-        // console.log(getCookie('prueba'));
-        document.querySelector('b').innerHTML = getCookie('prueba');
+        console.log(getCookie('prueba'));
     } else {
-        deleteCookie('prueba');
-        document.querySelector('b').innerHTML = 0;
+        deleteCookie('prueba'); // La eliminamos
+        setCookie('prueba', 1, 30); // Para que no ponga el <b> vacío, la reiniciamos.
     }
+    document.querySelector('b').innerHTML = getCookie('prueba');
 }
