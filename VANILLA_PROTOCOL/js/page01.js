@@ -41,7 +41,7 @@ function changeInput() {
     utl.introduce(container, label, br1, input, br2, btn);
 
     let user = document.getElementById('user');
-    let regExp = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+    let regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
     utl.checkREx(user, regExp);
 
