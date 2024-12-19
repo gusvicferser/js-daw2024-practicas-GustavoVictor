@@ -50,28 +50,27 @@ function introduce(domElement, ...domElements) {
  * 
  * @param {DOM element} domElement Elemento del DOM que queremos verificar
  * @param {Reg Exp} regExp Una expresión regular para verificar  
+ * @returns boolean (True si lo ha conseguido, False si no)
  * 
  * @author Gustavo Victor
  * @version 1.0
 */
 function checkREx(domElement, regExp) {
-    
+
     if (domElement != null || domElement != '') {
+        domElement.addEventListener('focus', function () {
+            this.select();
+            this.style.border = 'none';
+        })
         domElement.addEventListener('blur', function () {
-    
+
             if (regExp.test(this.value)) {
                 this.style.border = '3px solid green';
             } else {
                 this.style.border = '3px solid red';
             }
         })
-    
-        domElement.addEventListener('focus', function () {
-            this.select();
-            this.style.border = 'none';
-        })
     }
-
 }
 
 /**

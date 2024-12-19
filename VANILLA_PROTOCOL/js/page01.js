@@ -11,8 +11,38 @@
 import * as utl from './utilities.js';
 
 /**
+ * Función para comprobar si el nombre del usuario existe y, por tanto, su cookie:
+ * 
+ * @author Gustavo Víctor
+ * @version 1.0
+ */
+function checkCookie() {
+
+    let user = document.querySelector('input');
+
+    if (getCookie(user.value) != '') {
+        location.assign('/page2.html');
+    } else {
+
+        if (getCookie(user.value) === user.value) {
+            let error = utl.newElement('div', ['class:error']);
+
+            error.innerText = 'El usuario ya existe';
+
+            container.appendChild(error);
+        } else {
+
+            utl.setCookie(user.value, user.value, 1);
+
+        }
+    }
+
+}
+
+
+/**
  * Función para cambiar la pantalla de bienvenida al formulario de introducción
- * de usuario:
+ * de usuario y añade los eventos al nuevo display:
  * 
  * @author Gustavo Victor
  * @version 2.0
@@ -33,24 +63,23 @@ function changeInput() {
     let btn = utl.newElement('button', array);
     btn.innerText = 'Entra';
 
-    let container = document.getElementById('container');
-
     let br1 = document.createElement('br');
     let br2 = document.createElement('br');
 
     utl.introduce(container, label, br1, input, br2, btn);
 
     let user = document.getElementById('user');
-    let regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    let regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
 
-    utl.checkREx(user, regExp);
+    utl.checkREx(user, regExp); // Chequea si cumple la expresión regular
+
+    btn.addEventListener('click', checkCookie);
 
 }
 
-
-
 // Defino variables:
 var lastKey = '';
+var container = document.getElementById('container');
 
 // Evento para cuando se pulsan las dos teclas juntas y en ese orden:
 document.addEventListener('keydown', function (event) {
@@ -66,3 +95,4 @@ window.addEventListener('load', function () {
     this.setTimeout(changeInput, 5000);
 })
 
+// 
