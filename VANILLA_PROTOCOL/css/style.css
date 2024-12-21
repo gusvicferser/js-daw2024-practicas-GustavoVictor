@@ -1,0 +1,9 @@
+.in {
+    opacity: 1;
+    cursor:pointer;
+}
+
+.out {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -4,95 +4,169 @@
  * usuario en todo momento cuando pierde el foco del input:
  * 
  * @author Gustavo Víctor
- * @version 1.0
+ * @version 1.4
  */
 
 
 import * as utl from './utilities.js';
 
 /**
- * Función para comprobar si el nombre del usuario existe y, por tanto, su cookie:
+ * Función para comprobar si el nombre del usuario existe y, por tanto, su cookie.
+ * Si no cumple la expresión regular, no se envía nada.
  * 
  * @author Gustavo Víctor
- * @version 1.0
+ * @version 1.3
  */
-function checkCookie() {
+function setUserCookie() {
 
-    let user = document.querySelector('input');
+    try {
+        const user = document.querySelector('input');
+        const error = document.querySelector('.error');
 
-    if (getCookie(user.value) != '') {
-        location.assign('/page2.html');
-    } else {
+        // Traza para comprobar datos:
+        // console.log(user.value);
+        // console.log(utl.cookieName(user.value));
+        // console.log(document.cookie.split(';'));
 
-        if (getCookie(user.value) === user.value) {
-            let error = utl.newElement('div', ['class:error']);
-
-            error.innerText = 'El usuario ya existe';
-
-            container.appendChild(error);
+        // Si el usuario existe redireccionamos:
+        if (utl.cookieName(user.value) === user.value) {
+            // console.log('Existe la cookie'); // Traza
+            location.assign('/VANILLA_PROTOCOL/page02.html');
         } else {
 
-            utl.setCookie(user.value, user.value, 1);
+            if (regExp.test(user.value)) {
 
+                let lastDate = Date.now();
+                // console.log(lastDate); // Traza
+
+                const userData = {
+                    user: user.value,
+                    lastdate: lastDate,
+                    questions: {
+                    }
+                };
+
+                const userJson = JSON.stringify(userData);
+
+                // Creamos la cookie con el nombre de usuario, fecha y preguntas vacía:
+                utl.setCookie(user.value, userJson, 1);
+                sessionStorage.setItem('userIn', user.value);
+                location.assign('/VANILLA_PROTOCOL/page02.html');
+
+            } else {
+                throw new Error('¡El usuario no es válido!');
+            }
         }
+    } catch (error) {
+        errors.innerText = e.toString();
+        container.appendChild(errors);
     }
 
 }
 
-
 /**
  * Función para cambiar la pantalla de bienvenida al formulario de introducción
- * de usuario y añade los eventos al nuevo display:
+ * de usuario y añadir a su vez los eventos al nuevo display tras crearlos:
  * 
  * @author Gustavo Victor
- * @version 2.0
- */
+ * @version 2.3
+*/
 function changeInput() {
 
-    document.querySelector('h1').remove();
+    try {
+        // Inicializamos variables:
+        const h1 = document.querySelector('h1');
+        const br1 = document.createElement('br');
+        const br2 = document.createElement('br');
 
-    let array = ['for:user'];
+        let array, input, label, btn;
 
-    let label = utl.newElement('label', array);
-    label.innerText = 'USUARIO';
+        // Si el titulo existe, se elimina:
+        if (h1 != null) {
+            h1.remove();
+        }
 
-    array = ['type:text', 'id:user', 'name:user', 'placeholder:Introduce aquí tu usuario'];
-    let input = utl.newElement('input', array);
+        // Etiqueta para el user:
+        array = ['for:user'];
+        label = utl.newElement('label', array);
+        label.innerText = 'USUARIO';
 
-    array = ['type:button'];
-    let btn = utl.newElement('button', array);
-    btn.innerText = 'Entra';
+        // Input para el texto:
+        array = [
+            'type:text',
+            'id:user',
+            'name:user',
+            'placeholder:Introduce aquí tu usuario'
+        ];
+        input = utl.newElement('input', array);
 
-    let br1 = document.createElement('br');
-    let br2 = document.createElement('br');
+        // Creación del botón:
+        array = ['type:button'];
+        btn = utl.newElement('button', array);
+        btn.innerText = 'Entra';
+        btn.disabled = true;
 
-    utl.introduce(container, label, br1, input, br2, btn);
+        // Introducimos todos los elementos en el contenedor:
+        utl.introduce(container, label, br1, input, br2, btn);
 
-    let user = document.getElementById('user');
-    let regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
+        // Añadimos los eventos al input:
+        input.addEventListener('focus', function () {
+            btn.disabled = true;
+            errors.innerText = '';
+            this.select();
+            this.style.border = 'none';
+        });
 
-    utl.checkREx(user, regExp); // Chequea si cumple la expresión regular
+        input.addEventListener('blur', function () {
+            if (regExp.test(this.value)) {
+                this.style.border = '3px solid green';
+                btn.disabled = false;
+            } else {
+                this.style.border = '3px solid red';
+                btn.disabled = true;
+                errors.innerText = '¡El usuario no es válido! El formato correcto es texto@texto.dirección. Siendo dirección o 2 o 4 letras.';
+                container.appendChild(errors);
+            }
+        })
 
-    btn.addEventListener('click', checkCookie);
+        /* Para evitar fallos de seguridad, la expresión regular se ha de chequear
+            tanto al evaluar la casilla como al enviar el botón, ya que si se activa
+            desde el inspector, se puede enviar una expresión que no sea la buscada */
+        btn.addEventListener('click', setUserCookie);
+
+    } catch (error) {
+            errors.innerText = 'Ha ocurrido un error inesperado';
+            console.log(error);
+            container.appendChild(errors);
+
+    }
 
 }
 
 // Defino variables:
-var lastKey = '';
-var container = document.getElementById('container');
+let lastKey = '';
+let timeOut = ''; // He de crear aquí una variable para detenerla en caso de que el usuario pulse las teclas
+const errors = utl.newElement('div', ['class:errors']);
+const container = document.getElementById('container');
+const regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
 
 // Evento para cuando se pulsan las dos teclas juntas y en ese orden:
 document.addEventListener('keydown', function (event) {
     if (lastKey === 'Alt' && event.key === 'b') {
-        changeInput();
+        /* Si existe ya el input ponemos un if para que no pueda crear infinitos
+            inputs:*/
+        if (document.querySelector('input') == null) {
+            changeInput();
+        }
+
+        clearTimeout(timeOut); // Aquí quito el tiempo si no sale dos veces la función.
+
     } else {
         lastKey = event.key;
     }
 })
 
-// Evento que, alternativamente carga la función pasados 5 segundos:
+// Evento que carga la función pasados 5 segundos:
 window.addEventListener('load', function () {
-    this.setTimeout(changeInput, 5000);
+    timeOut = this.setTimeout(changeInput, 5000);
 })
-
-// 

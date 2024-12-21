@@ -2,17 +2,18 @@
  * JS para las utilidades a usar en cada página del proyecto:
  * 
  * @author Gustavo Víctor
- * @version 1.0
+ * @version 1.4
  */
 
 /**
  * Función para crear un elemento y sus atributos:
  * 
- * @param {string} element El elemento que queremos crear: 
- * @param {array} atributes Un array como un JSON con atributo:valor
+ * @param {string} domElement El elemento DOM que queremos crear
+ * @param {array} domAtributes Un array con atributo:valor
+ * @returns El elemento del DOM con todos los atributos
  * 
  * @author Gustavo Victor
- * @version 1.0
+ * @version 1.1
  */
 function newElement(domElement, domAtributes) {
 
@@ -34,41 +35,15 @@ function newElement(domElement, domAtributes) {
  * 
  * @param {string} domElement El elemento en el cual vamos a introducir los elementos 
  * @param {...*} domElements Array de elementos a introducir
+ * 
+ * @author Gustavo Víctor
+ * @version 1.0
  */
 function introduce(domElement, ...domElements) {
 
     if (domElements != null || domElements != '') {
         domElements.forEach(element => {
             domElement.appendChild(element);
-        })
-    }
-}
-
-/**
- * Función para comprobar si un elemento cumple una expresión regular cambiar el 
- * borde de color:
- * 
- * @param {DOM element} domElement Elemento del DOM que queremos verificar
- * @param {Reg Exp} regExp Una expresión regular para verificar  
- * @returns boolean (True si lo ha conseguido, False si no)
- * 
- * @author Gustavo Victor
- * @version 1.0
-*/
-function checkREx(domElement, regExp) {
-
-    if (domElement != null || domElement != '') {
-        domElement.addEventListener('focus', function () {
-            this.select();
-            this.style.border = 'none';
-        })
-        domElement.addEventListener('blur', function () {
-
-            if (regExp.test(this.value)) {
-                this.style.border = '3px solid green';
-            } else {
-                this.style.border = '3px solid red';
-            }
         })
     }
 }
@@ -118,12 +93,33 @@ function deleteCookie(cname) {
     document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
 }
 
+/**
+ * Función que devuelve el nombre de la cookie si existe:
+ * 
+ * @param {String} cname Nombre de la cookie
+ * @returns Nombre de la cookie si existe
+ * 
+ * @author Gustavo Víctor
+ * @version 1.0
+ */
+function cookieName(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for (let i=0; i < ca.length; i++) {
+        let c = ca[i];
 
-// Exportamos el utilities:
+        if(c.indexOf(name) == 0) {
+            return cname;
+        }
+    }
+    return '';
+}
+
+// Exportamos las funciones:
 export {
     newElement,
     introduce,
-    checkREx,
+    cookieName,
     setCookie,
     getCookie,
     deleteCookie
