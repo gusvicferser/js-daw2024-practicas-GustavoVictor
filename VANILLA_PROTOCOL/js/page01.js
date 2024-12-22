@@ -5,10 +5,18 @@
  * 
  * @author Gustavo Víctor
  * @version 1.4
- */
+*/
 
 
 import * as utl from './utilities.js';
+
+// Definimos variables al comienzo:
+let lastKey = '';
+let timeOut = ''; // He de crear aquí una variable para detenerla en caso de que el usuario pulse las teclas
+const errors = utl.newElement('div', ['class:errors']);
+const container = document.getElementById('container');
+const regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
+
 
 /**
  * Función para comprobar si el nombre del usuario existe y, por tanto, su cookie.
@@ -124,7 +132,10 @@ function changeInput() {
             } else {
                 this.style.border = '3px solid red';
                 btn.disabled = true;
-                errors.innerText = '¡El usuario no es válido! El formato correcto es texto@texto.dirección. Siendo dirección o 2 o 4 letras.';
+                errors.innerText = 
+                    '¡El usuario no es válido!'+
+                    'El formato correcto es texto@texto.dirección. '+
+                    'Siendo dirección o 2 o 4 letras.';
                 container.appendChild(errors);
             }
         })
@@ -143,12 +154,6 @@ function changeInput() {
 
 }
 
-// Defino variables:
-let lastKey = '';
-let timeOut = ''; // He de crear aquí una variable para detenerla en caso de que el usuario pulse las teclas
-const errors = utl.newElement('div', ['class:errors']);
-const container = document.getElementById('container');
-const regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
 
 // Evento para cuando se pulsan las dos teclas juntas y en ese orden:
 document.addEventListener('keydown', function (event) {
