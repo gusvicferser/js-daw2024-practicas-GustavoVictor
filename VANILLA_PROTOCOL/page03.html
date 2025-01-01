@@ -7,30 +7,30 @@
     <title>Page 03</title>
   </head>
   <body>
-    <div class="container start padding20">
+    <div class="container start padding20" id="container">
       <span class="qForm" id="qForm">
         <form action="#">
           <fieldset class="paddingBig">
             <legend>Introduce aquí tus preguntas:</legend>
             <label for="question">Escriba aquí su pregunta:</label><br />
             <input type="text" name="question" id="question" /><br /><br />
-            <input type="radio" name="answers" id="aTrue" />
             <label for="aTrue">Verdadero</label>
-            <input type="radio" name="answers" id="aFalse" />
-            <label for="aFalse">Falso</label><br />
-            <label for="punctuation"></label><br />
+            <input type="radio" name="answer" value="true" />
+            <label for="aFalse">Falso</label>
+            <input type="radio" name="answer" value="false" /><br /><br>
+            <label for="score">Puntuación:</label><br />
             <input
               type="text"
-              name="punctuation"
-              id="punctuation"
+              name="score"
+              id="score"
             /><br /><br />
             <button type="button" id="back">Atrás</button>
-            <button type="button" id="send">Grabar</button>
+            <button type="button" id="send" disabled="true">Grabar</button>
           </fieldset>
         </form>
       </span>
-      <span class="qTable" id="qTable">
-        <fieldset>
+      <span>
+        <fieldset id="qScenario">
           <table>
             <thead>
               <tr>
@@ -40,7 +40,7 @@
                 <th>Estado</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tQuestions">
 
             </tbody>
           </table>

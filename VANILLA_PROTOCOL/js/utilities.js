@@ -8,8 +8,8 @@
 /**
  * Función para crear un elemento y sus atributos:
  * 
- * @param {string} domElement El elemento DOM que queremos crear
- * @param {array} domAtributes Un array con atributo:valor
+ * @param domElement El elemento DOM que queremos crear
+ * @param domAtributes Un array con atributo:valor
  * @returns El elemento del DOM con todos los atributos
  * 
  * @author Gustavo Victor
@@ -32,9 +32,10 @@ function newElement(domElement, domAtributes) {
 
 /**
  * Función para meter todos los elementos en un elemento del DOM:
+ * (REVISAR)
  * 
- * @param {string} domElement El elemento en el cual vamos a introducir los elementos 
- * @param {...*} domElements Array de elementos a introducir
+ * @param domElement El elemento en el cual vamos a introducir los elementos 
+ * @param domElements Todos los elementos DOM a introducir
  * 
  * @author Gustavo Víctor
  * @version 1.0
@@ -66,7 +67,7 @@ function setCookie(cname, cvalue, exdays) {
 /**
  * Función para devolver el valor de una cookie:
  * 
- * @param {String} cname 
+ * @param cname 
  * @returns Valor de la cookie en cuestión
  */
 function getCookie(cname) {
@@ -96,7 +97,7 @@ function deleteCookie(cname) {
 /**
  * Función que devuelve el nombre de la cookie si existe:
  * 
- * @param {String} cname Nombre de la cookie
+ * @param cname Nombre de la cookie
  * @returns Nombre de la cookie si existe
  * 
  * @author Gustavo Víctor
@@ -105,15 +106,17 @@ function deleteCookie(cname) {
 function cookieName(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
-    for (let i=0; i < ca.length; i++) {
-        let c = ca[i];
-
-        if(c.indexOf(name) == 0) {
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
             return cname;
         }
     }
-    return '';
-}
+    return "";
+    }
 
 // Exportamos las funciones:
 export {

@@ -23,13 +23,12 @@ const regExp = /^[\S]+@[\S]+\.[\S]{2,4}$/;
  * Si no cumple la expresión regular, no se envía nada.
  * 
  * @author Gustavo Víctor
- * @version 1.3
+ * @version 1.4
  */
 function setUserCookie() {
 
     try {
         const user = document.querySelector('input');
-        const error = document.querySelector('.error');
 
         // Traza para comprobar datos:
         // console.log(user.value);
@@ -39,6 +38,10 @@ function setUserCookie() {
         // Si el usuario existe redireccionamos:
         if (utl.cookieName(user.value) === user.value) {
             // console.log('Existe la cookie'); // Traza
+
+            /* Ha de ponerse en la session el nombre del usuario que entra para
+            encuentre su cookie */
+            sessionStorage.setItem('userIn', user.value);
             location.assign('/VANILLA_PROTOCOL/page02.html');
         } else {
 
@@ -50,14 +53,17 @@ function setUserCookie() {
                 const userData = {
                     user: user.value,
                     lastdate: lastDate,
-                    questions: {
-                    }
+                    questions: []
                 };
 
+                // Setamos el futuro valor de la cookie con JSON:
                 const userJson = JSON.stringify(userData);
 
                 // Creamos la cookie con el nombre de usuario, fecha y preguntas vacía:
                 utl.setCookie(user.value, userJson, 1);
+
+                /* Ha de ponerse en la session el nombre del usuario que entra para
+                encuentre su cookie */
                 sessionStorage.setItem('userIn', user.value);
                 location.assign('/VANILLA_PROTOCOL/page02.html');
 
@@ -132,10 +138,10 @@ function changeInput() {
             } else {
                 this.style.border = '3px solid red';
                 btn.disabled = true;
-                errors.innerText = 
-                    '¡El usuario no es válido!'+
-                    'El formato correcto es texto@texto.dirección. '+
-                    'Siendo dirección o 2 o 4 letras.';
+                errors.innerText =
+                    '¡El usuario no es válido!' +
+                    'El formato correcto es texto@texto.dirección ' +
+                    'siendo dirección o 2 o 4 letras.';
                 container.appendChild(errors);
             }
         })
@@ -146,9 +152,9 @@ function changeInput() {
         btn.addEventListener('click', setUserCookie);
 
     } catch (error) {
-            errors.innerText = 'Ha ocurrido un error inesperado';
-            console.log(error);
-            container.appendChild(errors);
+        errors.innerText = 'Ha ocurrido un error inesperado';
+        console.log(error);
+        container.appendChild(errors);
 
     }
 

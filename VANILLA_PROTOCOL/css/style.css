@@ -1,3 +1,7 @@
+*{
+  margin: 0;
+}
+
 .in {
   opacity: 1;
   cursor: pointer;
@@ -25,7 +29,20 @@
 .paddingBig {
     padding:40px;
 }
+
 thead, th {
     border-bottom: 1px dotted black;
     padding: 0px 10px;
+}
+
+td {
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+#send {
+  cursor: not-allowed;
 }
