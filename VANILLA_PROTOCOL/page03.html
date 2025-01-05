@@ -11,13 +11,13 @@
       <span class="qForm" id="qForm">
         <form action="#">
           <fieldset class="paddingBig">
-            <legend>Introduce aquí tus preguntas:</legend>
+            <legend>Introduce tus preguntas:</legend>
             <label for="question">Escriba aquí su pregunta:</label><br />
             <input type="text" name="question" id="question" /><br /><br />
             <label for="aTrue">Verdadero</label>
-            <input type="radio" name="answer" value="true" />
+            <input type="radio" name="answer" value="true" id="aTrue"/>
             <label for="aFalse">Falso</label>
-            <input type="radio" name="answer" value="false" /><br /><br>
+            <input type="radio" name="answer" value="false" id="aFalse"/><br /><br>
             <label for="score">Puntuación:</label><br />
             <input
               type="text"
@@ -26,6 +26,7 @@
             /><br /><br />
             <button type="button" id="back">Atrás</button>
             <button type="button" id="send" disabled="true">Grabar</button>
+            
           </fieldset>
         </form>
       </span>
@@ -46,6 +47,7 @@
           </table>
         </fieldset>
       </span>
+      <button type="button" id="delete">Borrar preguntas</button>
     </div>
     <script type="module" src="js/page03.js"></script>
   </body>

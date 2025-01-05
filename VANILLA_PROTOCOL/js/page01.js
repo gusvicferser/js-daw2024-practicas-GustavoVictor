@@ -60,7 +60,7 @@ function setUserCookie() {
                 const userJson = JSON.stringify(userData);
 
                 // Creamos la cookie con el nombre de usuario, fecha y preguntas vacía:
-                utl.setCookie(user.value, userJson, 1);
+                utl.setCookie(user.value, userJson, 30);
 
                 /* Ha de ponerse en la session el nombre del usuario que entra para
                 encuentre su cookie */
