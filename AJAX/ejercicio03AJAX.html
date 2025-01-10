@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX03</title>
+</head>
+<body>
+    <script>
+        /**
+        * Ej3: Sobre el código anterior añade un manejo de errores utilizando 
+        * catch y muestra un mensaje como "Error al cargar los datos" en la 
+        * página si falla. Puedes verificar la propiedad response.ok para saber 
+        * si la solicitud fue exitosa. Para probarlo modifica la url por una que
+        * no exista.
+        */
+
+        fetch('https://reqres.in/api/sers?page=1')
+            .then((response) => { 
+                if(!response.ok) return response.json();
+                else throw new Error('Error al cargar los datos');
+            })
+            .then((response) => {
+                let ul = document.createElement('ul');
+                response.data.forEach(element => {
+                    let li = document.createElement('li');
+                    let content = 
+                        `${element.first_name}: ${element.email}`;
+                    
+                    li.textContent = content;
+
+                    ul.appendChild(li);
+                    
+                });
+                document.querySelector('body').appendChild(ul);
+            })
+            .catch((error) => console.error(error))
+    </script>
+</body>
+</html>

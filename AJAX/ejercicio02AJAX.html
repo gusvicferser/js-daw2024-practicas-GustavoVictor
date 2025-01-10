@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX02</title>
+</head>
+<body>
+    <script>
+        /**
+        * Ej2: Usa la misma API: https://reqres.in/api/users?page=1. 
+        * Recupera la lista de usuarios. Muestra el first_name y email de cada 
+        * usuario en un elemento <ul>.
+        */
+
+        fetch('https://reqres.in/api/users?page=1')
+            .then((response) => { return response.json() })
+            .then((response) => {
+                let ul = document.createElement('ul');
+                response.data.forEach(element => {
+                    let li = document.createElement('li');
+                    let content = 
+                        `${element.first_name}: ${element.email}`;
+                    
+                    li.textContent = content;
+
+                    ul.appendChild(li);
+                    
+                });
+                document.querySelector('body').appendChild(ul);
+            })
+            .catch((error) => console.error(error))
+    </script>
+</body>
+</html>

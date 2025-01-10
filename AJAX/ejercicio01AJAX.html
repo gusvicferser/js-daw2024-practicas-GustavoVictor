@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio01</title>
+</head>
+
+<body>
+    <script>
+        /**
+        * Ej1: Usa fetch para obtener datos de una API pública y mostrarlos en la 
+        * consola. Usa la API pública https://reqres.in/api/users?page=1. Haz una 
+        * solicitud GET para obtener la lista de usuarios. Finalmente muestra el 
+        * resultado en la consola (el objeto)
+        */
+
+        fetch('https://reqres.in/api/users?page=1')
+            .then((response) => { return response.json() })
+            .then((response) => console.log(response.data))
+            .catch((error) => console.error(error))
+    </script>
+</body>
+
+</html>

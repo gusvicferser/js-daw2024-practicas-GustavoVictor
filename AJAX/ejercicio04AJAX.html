@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX04</title>
+</head>
+<body>
+    <script>
+        /**
+        * Ej4: Usa AJAX para enviar datos a un servidor. Usa el endpoint 
+        * https://reqres.in/api/users. Envía un objeto JSON con un name y un job
+        * usando el método POST. Muestra la respuesta del servidor en la 
+        * consola. Usa el método fetch con las opciones method y body.
+        */
+
+        const data = {
+            name: 'Gustavo Víctor',
+            job: 'El puto amo'
+        };
+
+        fetch('https://reqres.in/api/users', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'aplication/JSON'
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => { 
+                if(response.ok) return response.json();
+                else throw new Error('Error al cargar los datos');
+            })
+            .then((response) => console.log(response))
+            .catch((error) => console.error(error))
+    </script>
+</body>
+</html>
