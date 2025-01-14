@@ -34,7 +34,18 @@
                 });
                 document.querySelector('body').appendChild(ul);
             })
-            .catch((error) => console.error(error))
+            .catch((error) => {
+                let div = document.createElement('div');
+            
+                div.textContent = error;
+                div.style.textAlign = 'center';
+                div.style.padding = '70px';
+                div.style.margin = 'auto';
+                div.style.color = 'white';
+                div.style.backgroundColor = 'darkred';
+            
+                document.querySelector('body').appendChild(div);
+            })
     </script>
 </body>
 </html>

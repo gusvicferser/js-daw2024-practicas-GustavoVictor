@@ -17,12 +17,10 @@
             .then((response) => { return response.json() })
             .then((response) => {
                 let ul = document.createElement('ul');
-                response.data.forEach(element => {
+                response.data.forEach(user => {
                     let li = document.createElement('li');
-                    let content = 
-                        `${element.first_name}: ${element.email}`;
-                    
-                    li.textContent = content;
+            
+                    li.textContent = `${user.first_name}: ${user.email}`;;
 
                     ul.appendChild(li);
                     
