@@ -27,7 +27,7 @@ function processFetch(numsecs, user) {
   // Data la iniciamos fuera y así podemos acceder a ella:
   let data;
 
-  fetch(`https://reqres.in/api/users/${user}?delay=${numsecs}`)
+  fetch(`${BASE_URL}${user}?delay=${numsecs}`)
     .then((response) => {
       // console.log(response);
       if (response.ok) return response.json();
@@ -40,7 +40,7 @@ function processFetch(numsecs, user) {
       // console.log(response.data);
 
       // Para poder usar fetch no podemos encadenarlo sin más:
-      fetch('https://httpbin.org/post', {
+      fetch(POSTMAN_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
