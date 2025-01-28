@@ -1,6 +1,6 @@
 /**
  * Crear una página web que al cabo de 5 segundos de estar en ella muestre una 
- * notificaciónal usuario para que visite un nuevo video que se ha publicado. 
+ * notificación al usuario para que visite un nuevo video que se ha publicado. 
  * Para ello, crea una función timeout que reciba el número de ms como parámetro 
  * y cree una promesa con el timeout como acción. Además, que salga por pantalla 
  * una cuenta atrás de 5 a 0 segundos. Cuando la cuenta llegue a cero, se 
@@ -21,11 +21,29 @@
 const mainDiv = document.getElementById('main');
 
 
-function countDown(ms){
-    return new Promise ((resolve) => {
-        
-        setTimeout(()=>{
-            
-        }, 1);
+function countDown(ms) {
+    return new Promise((resolve) => {
+
+        console.log('Inicio promesa');
+
+        let seconds = 5;
+
+        let interval = setInterval(() => {
+            console.log(seconds);
+            mainDiv.textContent = seconds;
+            seconds--;
+
+            if(seconds < 0) {
+                clearInterval(interval);
+            }
+        }, 1000)
+
+        console.log('En medio');
+
+        resolve(setTimeout(() => {
+            console.log('Dentro del segundo timeout');
+        }, ms))
     })
 }
+
+window.addEventListener('load', countDown(5000));
