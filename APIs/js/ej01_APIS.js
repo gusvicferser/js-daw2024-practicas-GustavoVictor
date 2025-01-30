@@ -26,24 +26,55 @@ function countDown(ms) {
 
         console.log('Inicio promesa');
 
-        let seconds = 5;
+        let seconds = ms / 1000;
+
+        mainDiv.textContent = seconds;
 
         let interval = setInterval(() => {
+            seconds--;
             console.log(seconds);
             mainDiv.textContent = seconds;
-            seconds--;
-
-            if(seconds < 0) {
+            if (seconds == 0) {
                 clearInterval(interval);
+                resolve(ms);
             }
         }, 1000)
 
-        console.log('En medio');
-
-        resolve(setTimeout(() => {
-            console.log('Dentro del segundo timeout');
-        }, ms))
     })
 }
 
-window.addEventListener('load', countDown(5000));
+function notificate() {
+
+    let noti = new Notification('Estreno', {
+        body: 'Hemos subido un nuevo vídeo\n\n ¿Te apetece verlo?'
+    });
+
+    noti.addEventListener('click', () => {
+        open('video.html');
+        close();
+    })
+
+}
+
+
+window.addEventListener('load', () => {
+    countDown(5000).then((answer) => {
+        setTimeout(() => {
+            console.log('Dentro del segundo timeout');
+
+            Notification.requestPermission().then((resp) => {
+                if (resp == 'granted') {
+                    console.log('Permiso concedido');
+
+                    return notificate();
+
+                } else {
+                    throw new Error('Permiso denegado');
+                }
+            }, answer);
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
+
+});
